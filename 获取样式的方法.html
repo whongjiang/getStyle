@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    div{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>
+<script>
+  var box=document.getElementsByTagName("div")[0];
+  console.log(box.style.width);//控制台无输出（只有行内样式才可以打印出来）
+  console.log(window.getComputedStyle(box, null).width);
+//  w3c: window.getComputedStyle(元素,伪元素)["left"]或window.getComputedStyle(元素,伪元素)["left"].left;
+//  IE旧版本：div.currentStyle.left或 div.current["left"]
+
+//  封装一个函数用来获取样式（支持内嵌、外部、行内样式）
+  //获取样式的封装函数
+  function getStyle(obj,attr){
+    if(obj.currentStyle){
+      return obj.currentStyle[attr];
+    }else {
+      return  window.getComputedStyle(obj,null)[attr];
+    }
+  }
+</script>
